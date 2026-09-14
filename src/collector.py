@@ -20,11 +20,13 @@ def fetch_weather_archive(lat: float, lon: float, start_date: str, end_date: str
 
 if __name__ == "__main__":
     # Example usage
-    lat = 40.7128  # Latitude for New York City
-    lon = -74.0060  # Longitude for New York City
+    lat = 40.7128
+    lon = -74.0060
     start_date = "2023-01-01"
     end_date = "2023-01-07"
-    
+
     weather_data = fetch_weather_archive(lat, lon, start_date, end_date)
-    
-    print(json.dumps(weather_data, indent=4))
+
+    with open("data/raw_sample.json", "w") as f:
+        json.dump(weather_data, f, indent=4)
+    print("Data saved successfully to data/raw_sample.json")
