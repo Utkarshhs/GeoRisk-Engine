@@ -2,6 +2,8 @@ import json
 import mysql.connector
 from mysql.connector import Error
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 def connect_to_database():
     try:   

@@ -19,14 +19,20 @@ def fetch_weather_archive(lat: float, lon: float, start_date: str, end_date: str
     return response.json()
 
 if __name__ == "__main__":
-    # Example usage
-    lat = 40.7128
-    lon = -74.0060
-    start_date = "2023-01-01"
-    end_date = "2023-01-07"
+    TARGET_ZONES = [
+    {"name": "bengaluru", "lat": 12.9716, "lon": 77.5946},
+    {"name": "mumbai", "lat": 19.0760, "lon": 72.8777},
+    {"name": "new_york", "lat": 40.7128, "lon": -74.0060},
+    {"name": "tokyo", "lat": 35.6762, "lon": 139.6503},
+    {"name": "london", "lat": 51.5074, "lon": -0.1278},
+]
+    start_date = "2018-01-01"
+    end_date = "2023-01-01"  
 
-    weather_data = fetch_weather_archive(lat, lon, start_date, end_date)
+    for zone in TARGET_ZONES:
+        weather_data = fetch_weather_archive(zone["lat"], zone["lon"], start_date, end_date)
+        file_path = f"data/raw_{zone['name']}.json"
+        with open(file_path, "w") as f:
+            json.dump(weather_data, f, indent=4)
 
-    with open("data/raw_sample.json", "w") as f:
-        json.dump(weather_data, f, indent=4)
-    print("Data saved successfully to data/raw_sample.json")
+    print("Data saved successfully to data/raw_*.json")
