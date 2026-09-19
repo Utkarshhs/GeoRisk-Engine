@@ -75,3 +75,4 @@ if __name__ == "__main__":
     cursor.close()
     connect.close()
     print("All geographic zones have been fully ingested into MySQL.")
+ 
